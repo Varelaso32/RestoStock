@@ -530,6 +530,9 @@ FodyWeavers.xsd
 *.msm
 *.msp
 
+# Ignorar archivos generados automáticamente por .NET relacionados con referencias temporales de compilación
+RestoStock*
+
 # JetBrains Rider
 
 ### VisualStudio Patch ###
