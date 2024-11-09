@@ -1,4 +1,6 @@
-﻿namespace RestoStock.Models
+﻿using System.Collections.Generic;
+
+namespace RestoStock.Models
 {
     public class Ingredientes
     {
@@ -7,6 +9,9 @@
         public int CantidadDisponible {set; get;}
         public int UnidadMedida {set; get;}
         public int PrecioUnitario {set; get;}
+
+        public ICollection<DetallesPlatos> DetallesPlatos {set; get;}
+
 
     }
 }
