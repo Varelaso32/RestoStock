@@ -1,4 +1,36 @@
 ﻿@page
-@model RestoStock.Pages.Ingredientes.EditModel
+@model RestoStock.Pages.Platos.EditModel
 @{
+    ViewData["Title"] = "Editar Plato";
+}
+
+<h2>Editar Plato</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="PlatoForm.IdPlato" /> <!-- Campo oculto para el Id del Plato -->
+
+    <div class="form-group">
+        <label asp-for="PlatoForm.Nombre" class="control-label"></label>
+        <input asp-for="PlatoForm.Nombre" class="form-control" />
+        <span asp-validation-for="PlatoForm.Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PlatoForm.PrecioVenta" class="control-label"></label>
+        <input asp-for="PlatoForm.PrecioVenta" class="form-control" step="0.01" />
+        <span asp-validation-for="PlatoForm.PrecioVenta" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PlatoForm.Descripcion" class="control-label"></label>
+        <input asp-for="PlatoForm.Descripcion" class="form-control" />
+        <span asp-validation-for="PlatoForm.Descripcion" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a asp-page="./Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }
