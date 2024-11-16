@@ -1,4 +1,47 @@
 ﻿@page
 @model RestoStock.Pages.Ingredientes.DeleteModel
 @{
+	ViewData["Title"] = "Eliminar Ingrediente";
 }
+<h1>Eliminar Ingrediente</h1>
+
+<h3>¿Está seguro de que desea eliminar este ingrediente?</h3>
+<div>
+    <h4>Ingrediente</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ingrediente.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ingrediente.Nombre)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ingrediente.CantidadDisponible)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ingrediente.CantidadDisponible)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ingrediente.UnidadMedida)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ingrediente.UnidadMedida)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ingrediente.PrecioUnitario)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ingrediente.PrecioUnitario)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Ingrediente.IdIngrediente" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        <a asp-page="./Index" class="btn btn-primary">Volver a la lista</a>
+    </form>
+</div>
