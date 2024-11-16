@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace RestoStock.Models
 {
     public class Ingredientes
     {
+        [Key]
         public int IdIngrediente {set; get;}
         public string Nombre {set; get;}
         public int CantidadDisponible {set; get;}
