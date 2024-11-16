@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace RestoStock.Pages.Ingredientes
+namespace RestoStock.Pages.Pedidos
 {
     public class EditModel : PageModel
     {
