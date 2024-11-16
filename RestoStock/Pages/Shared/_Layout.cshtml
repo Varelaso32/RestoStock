@@ -4,55 +4,87 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - RestoStock</title>
+    <link rel="icon" type="image/x-icon" href="/css/IconCocina.ico">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/RestoStock.styles.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJzN7Yk6+V3N0g4MSzBwv0O3bAXxFjptvpmvfXy+Q+kJg6gyV7iw+bgfjZPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
+ 
 </head>
 <body>
+    @if (User.Identity.IsAuthenticated)
+    {
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-light">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">RestoStock</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">
+                    <i class="bi bi-restaurant me-2"></i> RestoStock
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <a class="nav-link text-white" asp-area="" asp-page="/Index">
+                                <i class="bi bi-house-door-fill me-1"></i> Home
+                            </a>
                         </li>
                         <li>
-                            <a class="nav-link text-black" asp-area="" asp-page="/Ingredientes/Index">Ingredientes</a>
+                            <a class="nav-link text-white" asp-area="" asp-page="/Privacy">
+                                <i class="bi bi-info-circle-fill me-1"></i> Sobre Nosotros
+                            </a>
                         </li>
-                        <li>
-                            <a class="nav-link text-black" asp-area="" asp-page="/Pedidos/Index">Pedidos</a>
-                        </li>
-                        <li>
-                            <a class="nav-link text-black" asp-area="" asp-page="/Platos/Index">Platos</a>
-                        </li>
-                        <li>
-                            <a class="nav-link text-black" asp-area="" asp-page="/Provedores/Index">Provedores</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-list-ul me-1"></i> Menú
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-page="/Ingredientes/Index">
+                                        <i class="bi bi-egg-fried me-1"></i> Ingredientes
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-page="/Pedidos/Index">
+                                        <i class="bi bi-cart-fill me-1"></i> Pedidos
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-page="/Platos/Index">
+                                        <i class="bi bi-knife-fork me-1"></i> Platos
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-page="/Provedores/Index">
+                                        <i class="bi bi-truck me-1"></i> Provedores
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
+    <footer class="footer text-muted">
+        <div class="container">
+            &copy; 2024 - RestoStock - <a asp-area="" asp-page="/Privacy" class="text-white text-decoration-none">Privacy</a>
+        </div>
+    </footer>
+
+    }
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - RestoStock - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
+    
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -61,3 +93,7 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+@section Styles {
+    <link rel="stylesheet" href="/css/site.css" />
+}

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +7,7 @@ using RestoStock.Models;
 
 namespace RestoStock.Pages.Platos
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly RestoStockContext _context;
