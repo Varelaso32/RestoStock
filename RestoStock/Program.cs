@@ -17,6 +17,14 @@ namespace RestoStock
 
             );
 
+            //Manejo de las Cookies
+            builder.Services.AddAuthentication().AddCookie("MyCookieAuth", options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.Cookie.Name = "MyCookieAuth";
+                options.LoginPath = "/Account/Login";
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
