@@ -10,11 +10,11 @@ namespace RestoStock.BaseDeDatos.Data
         {
         }
 
-        public DbSet<Ingredientes> Ingredientes { get; set; }
-        public DbSet<DetallesPlatos> DetallesPlatos { get; set; }
-        public DbSet<Pedidos> Pedidos { get; set; }
-        public DbSet<Platos> Platos { get; set; }
-        public DbSet<Proveedores> Proveedores { get; set; }
+        public DbSet<Ingrediente> Ingredientes { get; set; }
+        public DbSet<DetallesPlato> DetallesPlatos { get; set; }
+        public DbSet<Pedido> Pedidos { get; set; }
+        public DbSet<Plato> Platos { get; set; }
+        public DbSet<Proveedor> Proveedores { get; set; }
         public DbSet<User> User { get; set; }
 
     }

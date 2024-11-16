@@ -2,7 +2,7 @@
 
 namespace RestoStock.Models
 {
-    public class Platos
+    public class Plato
     {
         [Key]
         public int IdPlato { get; set; }
@@ -10,6 +10,6 @@ namespace RestoStock.Models
         public int PrecioVenta { get; set; }
         public int Descripcion { get; set; }
 
-        public ICollection<DetallesPlatos> DetallesPlatos { set; get; }
+        public ICollection<DetallesPlato> DetallesPlatos { set; get; }
     }
 }

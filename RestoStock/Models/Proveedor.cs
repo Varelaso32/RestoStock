@@ -2,7 +2,7 @@
 
 namespace RestoStock.Models
 {
-    public class Proveedores
+    public class Proveedor
     {
         [Key]
         public int IdProveedor { get; set; }
@@ -11,6 +11,6 @@ namespace RestoStock.Models
         public string Telefono { get; set; }
         public string Email { get; set; }
         public string Direccion { get; set; }
-        public ICollection<Pedidos> Pedidos { get; set; }
+        public ICollection<Pedido> Pedidos { get; set; }
     }
 }
