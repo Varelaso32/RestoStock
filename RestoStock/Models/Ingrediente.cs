@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RestoStock.Models
 {
-    public class Ingredientes
+    public class Ingrediente
     {
         [Key]
         public int IdIngrediente {set; get;}
@@ -12,7 +12,7 @@ namespace RestoStock.Models
         public int UnidadMedida {set; get;}
         public int PrecioUnitario {set; get;}
 
-        public ICollection<DetallesPlatos> DetallesPlatos {set; get;}
+        public ICollection<DetallesPlato> DetallesPlatos {set; get;}
 
 
     }
