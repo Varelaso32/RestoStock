@@ -1,4 +1,41 @@
 ﻿@page
-@model RestoStock.Pages.Ingredientes.DeleteModel
+@model RestoStock.Pages.Platos.DeleteModel
 @{
+    ViewData["Title"] = "Eliminar Plato";
 }
+
+<h1>Eliminar Plato</h1>
+
+<h3>¿Está seguro de que desea eliminar este plato?</h3>
+<div>
+    <h4>Plato</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Plato.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Plato.Nombre)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Plato.PrecioVenta)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Plato.PrecioVenta)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Plato.Descripcion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Plato.Descripcion)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Plato.IdPlato" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        <a asp-page="./Index" class="btn btn-primary">Volver a la lista</a>
+    </form>
+</div>
