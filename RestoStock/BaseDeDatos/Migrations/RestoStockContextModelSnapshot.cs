@@ -21,7 +21,7 @@ namespace RestoStock.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("RestoStock.Models.DetallesPlatos", b =>
+            modelBuilder.Entity("RestoStock.Models.DetallesPlato", b =>
                 {
                     b.Property<int>("IdDetalle")
                         .ValueGeneratedOnAdd()
@@ -53,7 +53,7 @@ namespace RestoStock.Migrations
                     b.ToTable("DetallesPlatos");
                 });
 
-            modelBuilder.Entity("RestoStock.Models.Ingredientes", b =>
+            modelBuilder.Entity("RestoStock.Models.Ingrediente", b =>
                 {
                     b.Property<int>("IdIngrediente")
                         .ValueGeneratedOnAdd()
@@ -79,7 +79,7 @@ namespace RestoStock.Migrations
                     b.ToTable("Ingredientes");
                 });
 
-            modelBuilder.Entity("RestoStock.Models.Pedidos", b =>
+            modelBuilder.Entity("RestoStock.Models.Pedido", b =>
                 {
                     b.Property<int>("IdProveedor")
                         .ValueGeneratedOnAdd()
@@ -107,7 +107,7 @@ namespace RestoStock.Migrations
                     b.ToTable("Pedidos");
                 });
 
-            modelBuilder.Entity("RestoStock.Models.Platos", b =>
+            modelBuilder.Entity("RestoStock.Models.Plato", b =>
                 {
                     b.Property<int>("IdPlato")
                         .ValueGeneratedOnAdd()
@@ -129,7 +129,7 @@ namespace RestoStock.Migrations
                     b.ToTable("Platos");
                 });
 
-            modelBuilder.Entity("RestoStock.Models.Proveedores", b =>
+            modelBuilder.Entity("RestoStock.Models.Proveedor", b =>
                 {
                     b.Property<int>("IdProveedor")
                         .ValueGeneratedOnAdd()
@@ -183,15 +183,15 @@ namespace RestoStock.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("RestoStock.Models.DetallesPlatos", b =>
+            modelBuilder.Entity("RestoStock.Models.DetallesPlato", b =>
                 {
-                    b.HasOne("RestoStock.Models.Ingredientes", "Ingredientes")
+                    b.HasOne("RestoStock.Models.Ingrediente", "Ingredientes")
                         .WithMany("DetallesPlatos")
                         .HasForeignKey("IngredientesIdIngrediente")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RestoStock.Models.Platos", "Platos")
+                    b.HasOne("RestoStock.Models.Plato", "Platos")
                         .WithMany("DetallesPlatos")
                         .HasForeignKey("PlatosIdPlato")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -202,9 +202,9 @@ namespace RestoStock.Migrations
                     b.Navigation("Platos");
                 });
 
-            modelBuilder.Entity("RestoStock.Models.Pedidos", b =>
+            modelBuilder.Entity("RestoStock.Models.Pedido", b =>
                 {
-                    b.HasOne("RestoStock.Models.Proveedores", "Proveedores")
+                    b.HasOne("RestoStock.Models.Proveedor", "Proveedores")
                         .WithMany("Pedidos")
                         .HasForeignKey("ProveedoresIdProveedor")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -213,17 +213,17 @@ namespace RestoStock.Migrations
                     b.Navigation("Proveedores");
                 });
 
-            modelBuilder.Entity("RestoStock.Models.Ingredientes", b =>
+            modelBuilder.Entity("RestoStock.Models.Ingrediente", b =>
                 {
                     b.Navigation("DetallesPlatos");
                 });
 
-            modelBuilder.Entity("RestoStock.Models.Platos", b =>
+            modelBuilder.Entity("RestoStock.Models.Plato", b =>
                 {
                     b.Navigation("DetallesPlatos");
                 });
 
-            modelBuilder.Entity("RestoStock.Models.Proveedores", b =>
+            modelBuilder.Entity("RestoStock.Models.Proveedor", b =>
                 {
                     b.Navigation("Pedidos");
                 });
