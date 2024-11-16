@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RestoStock.BaseDeDatos.Data;
 using RestoStock.Models;
+using RestoStock.Models.Form;
 
 namespace RestoStock.Pages.Ingredientes
 {
@@ -20,7 +21,7 @@ namespace RestoStock.Pages.Ingredientes
         }
 
         [BindProperty]
-        public Ingrediente Ingrediente { get; set; } = default!;
+        public FormIngrediente Ingrediente { get; set; } = default!;
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -29,7 +30,15 @@ namespace RestoStock.Pages.Ingredientes
                 return Page();
             }
 
-            _context.Ingredientes.Add(Ingrediente);
+            var ingrediente = new Ingrediente
+            {
+                Nombre = Ingrediente.Nombre,
+                CantidadDisponible = Ingrediente.CantidadDisponible,
+                UnidadMedida = Ingrediente.UnidadMedida,
+                PrecioUnitario = Ingrediente.PrecioUnitario,
+            };
+
+            _context.Ingredientes.Add(ingrediente);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
