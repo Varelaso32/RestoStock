@@ -1,7 +1,10 @@
-﻿namespace RestoStock.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RestoStock.Models
 {
     public class DetallesPlatos
     {
+        [Key]
         public int IdDetalle { get; set; }
 
         public int Cantidad { get; set; }
