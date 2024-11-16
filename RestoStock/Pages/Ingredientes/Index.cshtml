@@ -1,4 +1,53 @@
 ﻿@page
 @model RestoStock.Pages.Ingredientes.IndexModel
 @{
+	ViewData["Title"] = "Index Ingredientes";
 }
+<h1>Index Ingredientes</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-success">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ingredientes[0].Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ingredientes[0].CantidadDisponible)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ingredientes[0].UnidadMedida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ingredientes[0].PrecioUnitario)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Ingredientes)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CantidadDisponible)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnidadMedida)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrecioUnitario)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.IdIngrediente" class="btn btn-warning">Edit</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.IdIngrediente" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
