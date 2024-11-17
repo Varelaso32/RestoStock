@@ -10,9 +10,9 @@ namespace RestoStock.Models
         public int Cantidad { get; set; }
 
         public int FkIngredientes { get; set; }
-        public Ingrediente Ingredientes { get; set; }
+        public Ingrediente Ingrediente { get; set; }
 
         public int FkPlato { get; set; }
-        public Plato Platos { get; set; }
+        public Plato Plato { get; set; }
     }
 }
