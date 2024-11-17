@@ -11,7 +11,7 @@ using RestoStock.BaseDeDatos.Data;
 namespace RestoStock.Migrations
 {
     [DbContext(typeof(RestoStockContext))]
-    [Migration("20241116153645_InitialCreateVarela")]
+    [Migration("20241117201508_InitialCreateVarela")]
     partial class InitialCreateVarela
     {
         /// <inheritdoc />
@@ -74,8 +74,9 @@ namespace RestoStock.Migrations
                     b.Property<int>("PrecioUnitario")
                         .HasColumnType("int");
 
-                    b.Property<int>("UnidadMedida")
-                        .HasColumnType("int");
+                    b.Property<string>("UnidadMedida")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdIngrediente");
 
@@ -118,11 +119,13 @@ namespace RestoStock.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPlato"));
 
-                    b.Property<int>("Descripcion")
-                        .HasColumnType("int");
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Nombre")
-                        .HasColumnType("int");
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PrecioVenta")
                         .HasColumnType("int");

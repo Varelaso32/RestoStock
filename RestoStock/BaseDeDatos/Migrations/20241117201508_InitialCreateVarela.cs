@@ -18,7 +18,7 @@ namespace RestoStock.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CantidadDisponible = table.Column<int>(type: "int", nullable: false),
-                    UnidadMedida = table.Column<int>(type: "int", nullable: false),
+                    UnidadMedida = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PrecioUnitario = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -32,9 +32,9 @@ namespace RestoStock.Migrations
                 {
                     IdPlato = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<int>(type: "int", nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PrecioVenta = table.Column<int>(type: "int", nullable: false),
-                    Descripcion = table.Column<int>(type: "int", nullable: false)
+                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
