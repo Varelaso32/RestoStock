@@ -1,27 +1,46 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RestoStock.BaseDeDatos.Data;
 using RestoStock.Models;
 
 namespace RestoStock.Pages.Proveedores
 {
     public class CreateModel : PageModel
     {
-        [BindProperty]
-        public Proveedor Proveedor { get; set; }
+        private readonly RestoStockContext _context;
 
-        public void OnGet()
+        public CreateModel(RestoStockContext context)
         {
+            _context = context;
         }
 
-        public IActionResult OnPost()
+        [BindProperty]
+        public Proveedor Proveedor { get; set; } = new Proveedor();
+
+        public IActionResult OnGet()
         {
-            if (!ModelState.IsValid)
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid || _context.Proveedores == null || Proveedor == null)
             {
                 return Page();
             }
 
-            // Lógica para guardar el Proveedor en la base de datos
-            return RedirectToPage("Index");
+            try
+            {
+                _context.Proveedores.Add(Proveedor);
+
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Error al guardar el proveedor: " + ex.Message);
+                return Page();
+            }
+            return RedirectToPage("./Index");
         }
     }
 }
