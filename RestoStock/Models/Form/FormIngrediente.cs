@@ -5,7 +5,7 @@ namespace RestoStock.Models.Form
     public class FormIngrediente
     {
         [Key]
-        public int IdIngrediente { set; get; }
+        public int IdPedido { set; get; }
         public string Nombre { set; get; }
         public int CantidadDisponible { set; get; }
         public string UnidadMedida { set; get; }
