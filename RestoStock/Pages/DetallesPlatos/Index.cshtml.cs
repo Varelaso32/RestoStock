@@ -22,8 +22,8 @@ namespace RestoStock.Pages.DetallesPlatos
             if (_context.DetallesPlatos != null)
             {
                 DetallesPlatos = await _context.DetallesPlatos
-                    .Include(dp => dp.Ingredientes) 
-                    .Include(dp => dp.Platos)      
+                    .Include(dp => dp.Ingrediente) 
+                    .Include(dp => dp.Plato)      
                     .ToListAsync();
             }
         }

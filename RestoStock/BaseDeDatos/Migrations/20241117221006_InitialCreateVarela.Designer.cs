@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestoStock.BaseDeDatos.Data;
 
@@ -10,9 +11,11 @@ using RestoStock.BaseDeDatos.Data;
 namespace RestoStock.Migrations
 {
     [DbContext(typeof(RestoStockContext))]
-    partial class RestoStockContextModelSnapshot : ModelSnapshot
+    [Migration("20241117221006_InitialCreateVarela")]
+    partial class InitialCreateVarela
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,17 +41,11 @@ namespace RestoStock.Migrations
                     b.Property<int>("FkPlato")
                         .HasColumnType("int");
 
-                    b.Property<int>("IngredientesIdIngrediente")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PlatosIdPlato")
-                        .HasColumnType("int");
-
                     b.HasKey("IdDetalle");
 
-                    b.HasIndex("IngredientesIdIngrediente");
+                    b.HasIndex("FkIngredientes");
 
-                    b.HasIndex("PlatosIdPlato");
+                    b.HasIndex("FkPlato");
 
                     b.ToTable("DetallesPlatos");
                 });
@@ -188,21 +185,21 @@ namespace RestoStock.Migrations
 
             modelBuilder.Entity("RestoStock.Models.DetallesPlato", b =>
                 {
-                    b.HasOne("RestoStock.Models.Ingrediente", "Ingredientes")
+                    b.HasOne("RestoStock.Models.Ingrediente", "Ingrediente")
                         .WithMany("DetallesPlatos")
-                        .HasForeignKey("IngredientesIdIngrediente")
+                        .HasForeignKey("FkIngredientes")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RestoStock.Models.Plato", "Platos")
+                    b.HasOne("RestoStock.Models.Plato", "Plato")
                         .WithMany("DetallesPlatos")
-                        .HasForeignKey("PlatosIdPlato")
+                        .HasForeignKey("FkPlato")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Ingredientes");
+                    b.Navigation("Ingrediente");
 
-                    b.Navigation("Platos");
+                    b.Navigation("Plato");
                 });
 
             modelBuilder.Entity("RestoStock.Models.Pedido", b =>
