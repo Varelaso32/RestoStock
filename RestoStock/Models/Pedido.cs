@@ -1,14 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using RestoStock.Models;
+using System.ComponentModel.DataAnnotations;
 
-namespace RestoStock.Models
+public class Pedido
 {
-    public class Pedido
-    {
-        [Key]
-        public int IdProveedor { get; set; }
-        public string FechaPedido { get; set; }
-        public int Total { get; set; }
-        public int FkProveedor { get; set; }
-        public Proveedor Proveedores { get; set; }
-    }
+    [Key]
+    public int IdProveedor { get; set; }
+
+    public string FechaPedido { get; set; }
+    public int Total { get; set; }
+
+    public int FkProveedor { get; set; }
+
+    public Proveedor Proveedores { get; set; }
+
 }

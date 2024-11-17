@@ -1,55 +1,50 @@
 ﻿@page
-@model RestoStock.Pages.Proveedores.CreateModel
+@model RestoStock.Pages.Pedidos.CreateModel
 @{
-    ViewData["Title"] = "Crear Proveedor";
+    ViewData["Title"] = "Crear Pedido";
+    var proveedores = ViewData["Proveedores"] as List<RestoStock.Models.Proveedor>;
+
+    if (proveedores == null || proveedores.Count == 0)
+    {
+        <text>No hay proveedores disponibles.</text>
+    }
 }
 
-<h1>Crear Proveedor</h1>
+<h1>Crear Pedido</h1>
 
-<h4>Proveedores</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            <div class="form-group">
-                <label asp-for="Proveedor.NombreEmpresa" class="control-label">Nombre de la Empresa</label>
-                <input asp-for="Proveedor.NombreEmpresa" class="form-control" />
-                <span asp-validation-for="Proveedor.NombreEmpresa" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Proveedor.Contacto" class="control-label">Nombre del Contacto</label>
-                <input asp-for="Proveedor.Contacto" class="form-control" />
-                <span asp-validation-for="Proveedor.Contacto" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Proveedor.Telefono" class="control-label">Teléfono</label>
-                <input asp-for="Proveedor.Telefono" class="form-control" />
-                <span asp-validation-for="Proveedor.Telefono" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Proveedor.Email" class="control-label">Correo Electrónico</label>
-                <input asp-for="Proveedor.Email" class="form-control" />
-                <span asp-validation-for="Proveedor.Email" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Proveedor.Direccion" class="control-label">Dirección</label>
-                <input asp-for="Proveedor.Direccion" class="form-control" />
-                <span asp-validation-for="Proveedor.Direccion" class="text-danger"></span>
-            </div>
-
-            <div class="form-group mt-3">
-                <input type="submit" value="Crear" class="btn btn-success" />
-                <a asp-page="Index" class="btn btn-primary">Volver a la Lista</a>
-            </div>
-        </form>
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Pedido.FechaPedido" class="control-label">Fecha del Pedido</label>
+        <input asp-for="Pedido.FechaPedido" class="form-control" />
+        <span asp-validation-for="Pedido.FechaPedido" class="text-danger"></span>
     </div>
-</div>
+
+    <div class="form-group">
+        <label asp-for="Pedido.Total" class="control-label">Total</label>
+        <input asp-for="Pedido.Total" class="form-control" />
+        <span asp-validation-for="Pedido.Total" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Pedido.FkProveedor" class="control-label">Proveedor</label>
+        <select asp-for="Pedido.FkProveedor" class="form-control">
+            <option value="">Seleccione un proveedor</option>
+            @if (proveedores != null)
+            {
+                foreach (var proveedor in proveedores)
+                {
+                    <option value="@proveedor.IdProveedor">@proveedor.NombreEmpresa</option>
+                }
+            }
+        </select>
+        <span asp-validation-for="Pedido.FkProveedor" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Crear Pedido" class="btn btn-success" />
+        <a asp-page="Index" class="btn btn-primary">Volver a la Lista</a>
+    </div>
+</form>
 
 @section Scripts {
     @{
