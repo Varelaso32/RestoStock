@@ -1,4 +1,59 @@
 ﻿@page
-@model RestoStock.Pages.Ingredientes.CreateModel
+@model RestoStock.Pages.Proveedores.CreateModel
 @{
+    ViewData["Title"] = "Crear Proveedor";
 }
+
+<h1>Crear Proveedor</h1>
+
+<h4>Proveedores</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Proveedor.NombreEmpresa" class="control-label">Nombre de la Empresa</label>
+                <input asp-for="Proveedor.NombreEmpresa" class="form-control" />
+                <span asp-validation-for="Proveedor.NombreEmpresa" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Proveedor.Contacto" class="control-label">Nombre del Contacto</label>
+                <input asp-for="Proveedor.Contacto" class="form-control" />
+                <span asp-validation-for="Proveedor.Contacto" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Proveedor.Telefono" class="control-label">Teléfono</label>
+                <input asp-for="Proveedor.Telefono" class="form-control" />
+                <span asp-validation-for="Proveedor.Telefono" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Proveedor.Email" class="control-label">Correo Electrónico</label>
+                <input asp-for="Proveedor.Email" class="form-control" />
+                <span asp-validation-for="Proveedor.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Proveedor.Direccion" class="control-label">Dirección</label>
+                <input asp-for="Proveedor.Direccion" class="form-control" />
+                <span asp-validation-for="Proveedor.Direccion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Crear" class="btn btn-success" />
+                <a asp-page="Index" class="btn btn-primary">Volver a la Lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
