@@ -1,4 +1,40 @@
 ﻿@page
-@model RestoStock.Pages.Ingredientes.IndexModel
+@model RestoStock.Pages.Proveedores.IndexModel
 @{
+    ViewData["Title"] = "Index Proveedores";
 }
+
+<h1>Index Proveedores</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-success">Agregar Nuevo Proveedor</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Proveedores[0].NombreEmpresa)</th>
+            <th>@Html.DisplayNameFor(model => model.Proveedores[0].Contacto)</th>
+            <th>@Html.DisplayNameFor(model => model.Proveedores[0].Telefono)</th>
+            <th>@Html.DisplayNameFor(model => model.Proveedores[0].Email)</th>
+            <th>@Html.DisplayNameFor(model => model.Proveedores[0].Direccion)</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Proveedores)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.NombreEmpresa)</td>
+                <td>@Html.DisplayFor(modelItem => item.Contacto)</td>
+                <td>@Html.DisplayFor(modelItem => item.Telefono)</td>
+                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                <td>@Html.DisplayFor(modelItem => item.Direccion)</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.IdProveedor" class="btn btn-warning">Editar</a> 
+                    <a asp-page="./Delete" asp-route-id="@item.IdProveedor" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

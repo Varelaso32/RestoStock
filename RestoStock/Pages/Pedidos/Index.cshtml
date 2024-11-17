@@ -1,4 +1,36 @@
 ﻿@page
-@model RestoStock.Pages.Ingredientes.IndexModel
+@model RestoStock.Pages.Pedidos.IndexModel
 @{
+    ViewData["Title"] = "Index Pedidos";
 }
+
+<h1>Index Pedidos</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-success">Agregar Nuevo Pedido</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Pedidos[0].FechaPedido)</th>
+            <th>@Html.DisplayNameFor(model => model.Pedidos[0].Total)</th>
+            <th>@Html.DisplayNameFor(model => model.Pedidos[0].Proveedores.NombreEmpresa)</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Pedidos)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.FechaPedido)</td>
+                <td>@Html.DisplayFor(modelItem => item.Total)</td>
+                <td>@Html.DisplayFor(modelItem => item.Proveedores.NombreEmpresa)</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.IdProveedor" class="btn btn-warning">Editar</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.IdProveedor" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

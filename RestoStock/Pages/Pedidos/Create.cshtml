@@ -1,4 +1,48 @@
 ﻿@page
-@model RestoStock.Pages.Ingredientes.CreateModel
+@model RestoStock.Pages.Pedidos.CreateModel
 @{
+    ViewData["Title"] = "Crear Pedido";
+}
+
+<h1>Crear Pedido</h1>
+
+<h4>Pedido</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Pedido.FechaPedido" class="control-label">Fecha del Pedido</label>
+                <input asp-for="Pedido.FechaPedido" class="form-control" />
+                <span asp-validation-for="Pedido.FechaPedido" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Pedido.Total" class="control-label">Total</label>
+                <input asp-for="Pedido.Total" class="form-control" />
+                <span asp-validation-for="Pedido.Total" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Pedido.FkProveedor" class="control-label">Proveedor</label>
+                <select asp-for="Pedido.FkProveedor" class="form-control" asp-items="Model.Proveedores">
+                    <option value="">Seleccione un proveedor</option>
+                </select>
+                <span asp-validation-for="Pedido.FkProveedor" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Crear Pedido" class="btn btn-success" />
+                <a asp-page="Index" class="btn btn-primary">Volver a la Lista</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

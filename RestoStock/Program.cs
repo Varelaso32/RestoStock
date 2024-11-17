@@ -17,6 +17,7 @@ namespace RestoStock
 
             );
 
+
             //Manejo de las Cookies
             builder.Services.AddAuthentication().AddCookie("MyCookieAuth", options =>
             {

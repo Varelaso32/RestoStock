@@ -1,4 +1,47 @@
 ﻿@page
-@model RestoStock.Pages.Ingredientes.EditModel
+@model RestoStock.Pages.Proveedores.EditModel
 @{
+    ViewData["Title"] = "Editar Proveedor";
+}
+<h2>Editar Proveedor</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Proveedor.IdProveedor" /> <!-- Campo oculto para el Id -->
+
+    <div class="form-group">
+        <label asp-for="Proveedor.NombreEmpresa" class="control-label"></label>
+        <input asp-for="Proveedor.NombreEmpresa" class="form-control" />
+        <span asp-validation-for="Proveedor.NombreEmpresa" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Proveedor.Contacto" class="control-label"></label>
+        <input asp-for="Proveedor.Contacto" class="form-control" />
+        <span asp-validation-for="Proveedor.Contacto" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Proveedor.Telefono" class="control-label"></label>
+        <input asp-for="Proveedor.Telefono" class="form-control" />
+        <span asp-validation-for="Proveedor.Telefono" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Proveedor.Email" class="control-label"></label>
+        <input asp-for="Proveedor.Email" class="form-control" type="email" />
+        <span asp-validation-for="Proveedor.Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Proveedor.Direccion" class="control-label"></label>
+        <input asp-for="Proveedor.Direccion" class="form-control" />
+        <span asp-validation-for="Proveedor.Direccion" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a asp-page="./Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }
