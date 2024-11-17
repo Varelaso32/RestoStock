@@ -51,7 +51,7 @@ namespace RestoStock.Pages.Ingredientes
 
         public async Task<IActionResult> OnPostAsync()
         {
-            Console.WriteLine(!ModelState.IsValid);
+            Console.WriteLine("Hola");
             if (!ModelState.IsValid)
             {
                 return Page();
