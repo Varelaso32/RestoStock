@@ -1,8 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RestoStock.BaseDeDatos.Data;
-using RestoStock.Models;
 
 namespace RestoStock.Pages.Pedidos
 {

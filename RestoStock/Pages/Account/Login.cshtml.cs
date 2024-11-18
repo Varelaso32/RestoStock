@@ -1,10 +1,10 @@
-using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RestoStock.BaseDeDatos.Data;
 using RestoStock.Models;
+using System.Security.Claims;
 
 namespace RestoStock.Pages.Account
 {

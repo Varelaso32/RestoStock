@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RestoStock.BaseDeDatos.Data;
@@ -19,7 +18,7 @@ namespace RestoStock.Pages.Ingredientes
 
         public IList<Ingrediente> Ingredientes { get; set; } = default!;
 
-        public async Task OnGetAsync()  
+        public async Task OnGetAsync()
         {
             if (_context.Ingredientes != null)
             {

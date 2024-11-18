@@ -13,5 +13,4 @@ public class Pedido
 
     public Proveedor Proveedores { get; set; }
 
-
 }
