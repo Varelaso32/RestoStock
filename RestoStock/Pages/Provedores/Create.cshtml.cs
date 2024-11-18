@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using RestoStock.BaseDeDatos.Data;
 using RestoStock.Models;
 
-namespace RestoStock.Pages.Proveedores
+namespace RestoStock.Pages.Provedores
 {
     public class CreateModel : PageModel
     {
@@ -32,7 +32,6 @@ namespace RestoStock.Pages.Proveedores
             try
             {
                 _context.Proveedores.Add(Proveedor);
-
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
