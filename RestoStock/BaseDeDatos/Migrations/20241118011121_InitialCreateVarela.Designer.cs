@@ -11,7 +11,7 @@ using RestoStock.BaseDeDatos.Data;
 namespace RestoStock.Migrations
 {
     [DbContext(typeof(RestoStockContext))]
-    [Migration("20241118002025_InitialCreateVarela")]
+    [Migration("20241118011121_InitialCreateVarela")]
     partial class InitialCreateVarela
     {
         /// <inheritdoc />
@@ -69,17 +69,11 @@ namespace RestoStock.Migrations
                     b.Property<int>("FkPlato")
                         .HasColumnType("int");
 
-                    b.Property<int>("IngredienteIdIngrediente")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PlatoIdPlato")
-                        .HasColumnType("int");
-
                     b.HasKey("IdDetalle");
 
-                    b.HasIndex("IngredienteIdIngrediente");
+                    b.HasIndex("FkIngredientes");
 
-                    b.HasIndex("PlatoIdPlato");
+                    b.HasIndex("FkPlato");
 
                     b.ToTable("DetallesPlatos");
                 });
@@ -207,13 +201,13 @@ namespace RestoStock.Migrations
                 {
                     b.HasOne("RestoStock.Models.Ingrediente", "Ingrediente")
                         .WithMany("DetallesPlatos")
-                        .HasForeignKey("IngredienteIdIngrediente")
+                        .HasForeignKey("FkIngredientes")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("RestoStock.Models.Plato", "Plato")
                         .WithMany("DetallesPlatos")
-                        .HasForeignKey("PlatoIdPlato")
+                        .HasForeignKey("FkPlato")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -18,7 +18,20 @@ namespace RestoStock.BaseDeDatos.Data
         public DbSet<User> User { get; set; }
 
 
-        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<DetallesPlato>()
+                .HasOne(dp => dp.Ingrediente) 
+                .WithMany(i => i.DetallesPlatos) 
+                .HasForeignKey(dp => dp.FkIngredientes) 
+                .OnDelete(DeleteBehavior.Cascade); 
+
+            modelBuilder.Entity<DetallesPlato>()
+                .HasOne(dp => dp.Plato) 
+                .WithMany(p => p.DetallesPlatos) 
+                .HasForeignKey(dp => dp.FkPlato) 
+                .OnDelete(DeleteBehavior.Cascade);
+        }
 
     }
 
