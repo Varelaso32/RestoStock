@@ -27,8 +27,8 @@
                 <td>@Html.DisplayFor(modelItem => item.Total)</td>
                 <td>@Html.DisplayFor(modelItem => item.Proveedores.NombreEmpresa)</td>
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.IdProveedor" class="btn btn-warning">Editar</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.IdProveedor" class="btn btn-danger">Eliminar</a>
+                    <a asp-page="./Edit" asp-route-id="@item.IdPedido" class="btn btn-warning">Editar</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.IdPedido" class="btn btn-danger">Eliminar</a>
                 </td>
             </tr>
         }

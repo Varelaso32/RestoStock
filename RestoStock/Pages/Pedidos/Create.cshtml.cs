@@ -1,12 +1,8 @@
-using RestoStock.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using RestoStock.BaseDeDatos.Data;
 using Microsoft.EntityFrameworkCore;
+using RestoStock.BaseDeDatos.Data;
 using RestoStock.Models.Form;
 
 namespace RestoStock.Pages.Pedidos

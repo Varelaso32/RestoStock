@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RestoStock.BaseDeDatos.Data;
@@ -22,8 +21,8 @@ namespace RestoStock.Pages.DetallesPlatos
             if (_context.DetallesPlatos != null)
             {
                 DetallesPlatos = await _context.DetallesPlatos
-                    .Include(dp => dp.Ingrediente) 
-                    .Include(dp => dp.Plato)      
+                    .Include(dp => dp.Ingrediente)
+                    .Include(dp => dp.Plato)
                     .ToListAsync();
             }
         }

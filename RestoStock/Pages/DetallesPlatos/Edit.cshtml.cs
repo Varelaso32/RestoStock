@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RestoStock.BaseDeDatos.Data;
-using RestoStock.Models;
 using RestoStock.Models.Form;
 
 namespace RestoStock.Pages.DetallesPlatos

@@ -47,11 +47,11 @@ namespace RestoStock.Migrations
                 {
                     IdProveedor = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NombreEmpresa = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Contacto = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NombreEmpresa = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Contacto = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Telefono = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Direccion = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Direccion = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -80,20 +80,22 @@ namespace RestoStock.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Cantidad = table.Column<int>(type: "int", nullable: false),
                     FkIngredientes = table.Column<int>(type: "int", nullable: false),
-                    FkPlato = table.Column<int>(type: "int", nullable: false)
+                    IngredienteIdIngrediente = table.Column<int>(type: "int", nullable: false),
+                    FkPlato = table.Column<int>(type: "int", nullable: false),
+                    PlatoIdPlato = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DetallesPlatos", x => x.IdDetalle);
                     table.ForeignKey(
-                        name: "FK_DetallesPlatos_Ingredientes_FkIngredientes",
-                        column: x => x.FkIngredientes,
+                        name: "FK_DetallesPlatos_Ingredientes_IngredienteIdIngrediente",
+                        column: x => x.IngredienteIdIngrediente,
                         principalTable: "Ingredientes",
                         principalColumn: "IdIngrediente",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DetallesPlatos_Platos_FkPlato",
-                        column: x => x.FkPlato,
+                        name: "FK_DetallesPlatos_Platos_PlatoIdPlato",
+                        column: x => x.PlatoIdPlato,
                         principalTable: "Platos",
                         principalColumn: "IdPlato",
                         onDelete: ReferentialAction.Cascade);
@@ -103,7 +105,7 @@ namespace RestoStock.Migrations
                 name: "Pedidos",
                 columns: table => new
                 {
-                    IdProveedor = table.Column<int>(type: "int", nullable: false)
+                    IdPedido = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FechaPedido = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Total = table.Column<int>(type: "int", nullable: false),
@@ -112,7 +114,7 @@ namespace RestoStock.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pedidos", x => x.IdProveedor);
+                    table.PrimaryKey("PK_Pedidos", x => x.IdPedido);
                     table.ForeignKey(
                         name: "FK_Pedidos_Proveedores_ProveedoresIdProveedor",
                         column: x => x.ProveedoresIdProveedor,
@@ -122,14 +124,14 @@ namespace RestoStock.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_DetallesPlatos_FkIngredientes",
+                name: "IX_DetallesPlatos_IngredienteIdIngrediente",
                 table: "DetallesPlatos",
-                column: "FkIngredientes");
+                column: "IngredienteIdIngrediente");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DetallesPlatos_FkPlato",
+                name: "IX_DetallesPlatos_PlatoIdPlato",
                 table: "DetallesPlatos",
-                column: "FkPlato");
+                column: "PlatoIdPlato");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pedidos_ProveedoresIdProveedor",
