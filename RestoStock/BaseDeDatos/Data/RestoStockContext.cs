@@ -20,6 +20,7 @@ namespace RestoStock.BaseDeDatos.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+<<<<<<< HEAD
             modelBuilder.Entity<Pedido>()
                 .HasOne(p => p.Proveedor)
                 .WithMany(b => b.Pedidos)
@@ -34,6 +35,20 @@ namespace RestoStock.BaseDeDatos.Data
         }
 
 
+=======
+            modelBuilder.Entity<DetallesPlato>()
+                .HasOne(dp => dp.Ingrediente) 
+                .WithMany(i => i.DetallesPlatos) 
+                .HasForeignKey(dp => dp.FkIngredientes) 
+                .OnDelete(DeleteBehavior.Cascade); 
+
+            modelBuilder.Entity<DetallesPlato>()
+                .HasOne(dp => dp.Plato) 
+                .WithMany(p => p.DetallesPlatos) 
+                .HasForeignKey(dp => dp.FkPlato) 
+                .OnDelete(DeleteBehavior.Cascade);
+        }
+>>>>>>> Develop
 
     }
 
