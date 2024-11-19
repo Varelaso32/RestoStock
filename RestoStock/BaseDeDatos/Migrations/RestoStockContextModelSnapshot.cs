@@ -36,15 +36,12 @@ namespace RestoStock.Migrations
                     b.Property<int>("FkProveedor")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProveedoresIdProveedor")
-                        .HasColumnType("int");
-
                     b.Property<int>("Total")
                         .HasColumnType("int");
 
                     b.HasKey("IdPedido");
 
-                    b.HasIndex("ProveedoresIdProveedor");
+                    b.HasIndex("FkProveedor");
 
                     b.ToTable("Pedidos");
                 });
@@ -185,13 +182,13 @@ namespace RestoStock.Migrations
 
             modelBuilder.Entity("Pedido", b =>
                 {
-                    b.HasOne("RestoStock.Models.Proveedor", "Proveedores")
+                    b.HasOne("RestoStock.Models.Proveedor", "Proveedor")
                         .WithMany("Pedidos")
-                        .HasForeignKey("ProveedoresIdProveedor")
+                        .HasForeignKey("FkProveedor")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Proveedores");
+                    b.Navigation("Proveedor");
                 });
 
             modelBuilder.Entity("RestoStock.Models.DetallesPlato", b =>

@@ -107,15 +107,14 @@ namespace RestoStock.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FechaPedido = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Total = table.Column<int>(type: "int", nullable: false),
-                    FkProveedor = table.Column<int>(type: "int", nullable: false),
-                    ProveedoresIdProveedor = table.Column<int>(type: "int", nullable: false)
+                    FkProveedor = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Pedidos", x => x.IdPedido);
                     table.ForeignKey(
-                        name: "FK_Pedidos_Proveedores_ProveedoresIdProveedor",
-                        column: x => x.ProveedoresIdProveedor,
+                        name: "FK_Pedidos_Proveedores_FkProveedor",
+                        column: x => x.FkProveedor,
                         principalTable: "Proveedores",
                         principalColumn: "IdProveedor",
                         onDelete: ReferentialAction.Cascade);
@@ -132,9 +131,9 @@ namespace RestoStock.Migrations
                 column: "FkPlato");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pedidos_ProveedoresIdProveedor",
+                name: "IX_Pedidos_FkProveedor",
                 table: "Pedidos",
-                column: "ProveedoresIdProveedor");
+                column: "FkProveedor");
         }
 
         /// <inheritdoc />

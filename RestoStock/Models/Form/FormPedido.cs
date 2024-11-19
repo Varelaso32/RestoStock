@@ -2,7 +2,9 @@
 
 public class FormPedido
 {
-    public String FechaPedido { get; set; }
+    [Key]
+    public int IdPedido { get; set; }
+    public string FechaPedido { get; set; }
 
     [Required(ErrorMessage = "Debe ingresar el total.")]
     public int Total { get; set; }

@@ -20,37 +20,26 @@ namespace RestoStock.BaseDeDatos.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-<<<<<<< HEAD
+
+            modelBuilder.Entity<DetallesPlato>()
+                .HasOne(dp => dp.Ingrediente)
+                .WithMany(i => i.DetallesPlatos)
+                .HasForeignKey(dp => dp.FkIngredientes)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<DetallesPlato>()
+                .HasOne(dp => dp.Plato)
+                .WithMany(p => p.DetallesPlatos)
+                .HasForeignKey(dp => dp.FkPlato)
+                .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<Pedido>()
                 .HasOne(p => p.Proveedor)
-                .WithMany(b => b.Pedidos)
-                .HasForeignKey(p => p.FkProveedor) 
-                .HasConstraintName("FK_Pedidos_Proveedores_ProveedoresIdProveedor") 
-                .OnDelete(DeleteBehavior.Cascade);
-
-            
-            modelBuilder.Entity<Pedido>()
-                .Property(p => p.FkProveedor)
-                .HasColumnName("ProveedoresIdProveedor"); 
-        }
-
-
-=======
-            modelBuilder.Entity<DetallesPlato>()
-                .HasOne(dp => dp.Ingrediente) 
-                .WithMany(i => i.DetallesPlatos) 
-                .HasForeignKey(dp => dp.FkIngredientes) 
-                .OnDelete(DeleteBehavior.Cascade); 
-
-            modelBuilder.Entity<DetallesPlato>()
-                .HasOne(dp => dp.Plato) 
-                .WithMany(p => p.DetallesPlatos) 
-                .HasForeignKey(dp => dp.FkPlato) 
+                .WithMany(pr => pr.Pedidos)
+                .HasForeignKey(p => p.FkProveedor)
                 .OnDelete(DeleteBehavior.Cascade);
         }
->>>>>>> Develop
 
     }
-
 
 }
