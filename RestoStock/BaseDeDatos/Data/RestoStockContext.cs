@@ -46,11 +46,8 @@ namespace RestoStock.BaseDeDatos.Data
                 .HasOne(dp => dp.Plato) 
                 .WithMany(p => p.DetallesPlatos) 
                 .HasForeignKey(dp => dp.FkPlato) 
-                .OnDelete(DeleteBehavior.Cascade);
         }
 >>>>>>> Develop
 
     }
-
-
 }
