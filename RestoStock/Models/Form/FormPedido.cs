@@ -1,14 +1,12 @@
-﻿namespace RestoStock.Models.Form
+﻿using System.ComponentModel.DataAnnotations;
+
+public class FormPedido
 {
-    public class FormPedido
-    {
-        public int IdPedido { get; set; }
+    public String FechaPedido { get; set; }
 
-        public string FechaPedido { get; set; }
-        public int Total { get; set; }
+    [Required(ErrorMessage = "Debe ingresar el total.")]
+    public int Total { get; set; }
 
-        public int FkProveedor { get; set; }
-
-
-    }
+    [Required(ErrorMessage = "Debe seleccionar un proveedor.")]
+    public int FkProveedor { get; set; } 
 }

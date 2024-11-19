@@ -24,5 +24,6 @@ namespace RestoStock.Pages.Proveedores
                 Proveedores = await _context.Proveedores.ToListAsync();
             }
         }
+
     }
 }

@@ -23,7 +23,7 @@ namespace RestoStock.Pages.Pedidos
 
         public async Task OnGetAsync()
         {
-            // Cargar la lista de proveedores para el dropdown
+
             Proveedores = new SelectList(await _context.Proveedores.ToListAsync(), "IdProveedor", "NombreEmpresa");
         }
 
@@ -31,8 +31,20 @@ namespace RestoStock.Pages.Pedidos
         {
             if (!ModelState.IsValid)
             {
+                Proveedores = new SelectList(await _context.Proveedores.ToListAsync(), "IdProveedor", "NombreEmpresa");
                 return Page();
             }
+
+            if (Pedido.FkProveedor == 0)
+            {
+                ModelState.AddModelError("Pedido.FkProveedor", "Debe seleccionar un proveedor.");
+                Proveedores = new SelectList(await _context.Proveedores.ToListAsync(), "IdProveedor", "NombreEmpresa");
+                return Page();
+            }
+
+            // Log para verificar el valor
+            Console.WriteLine("FkProveedor: " + Pedido.FkProveedor);
+
             var pedido = new Pedido
             {
                 FechaPedido = Pedido.FechaPedido,
@@ -40,12 +52,13 @@ namespace RestoStock.Pages.Pedidos
                 FkProveedor = Pedido.FkProveedor
             };
 
-            // Agregar el pedido a la base de datos
             _context.Pedidos.Add(pedido);
             await _context.SaveChangesAsync();
 
-            // Redirigir después de guardar el pedido
+
             return RedirectToPage("./Index");
         }
+
+
     }
 }
