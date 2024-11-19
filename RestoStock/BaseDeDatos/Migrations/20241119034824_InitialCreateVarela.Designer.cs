@@ -11,8 +11,8 @@ using RestoStock.BaseDeDatos.Data;
 namespace RestoStock.Migrations
 {
     [DbContext(typeof(RestoStockContext))]
-    [Migration("20241118002505_InitialCreateJDelacruz")]
-    partial class InitialCreateJDelacruz
+    [Migration("20241119034824_InitialCreateVarela")]
+    partial class InitialCreateVarela
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,15 +39,12 @@ namespace RestoStock.Migrations
                     b.Property<int>("FkProveedor")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProveedoresIdProveedor")
-                        .HasColumnType("int");
-
                     b.Property<int>("Total")
                         .HasColumnType("int");
 
                     b.HasKey("IdPedido");
 
-                    b.HasIndex("ProveedoresIdProveedor");
+                    b.HasIndex("FkProveedor");
 
                     b.ToTable("Pedidos");
                 });
@@ -69,17 +66,11 @@ namespace RestoStock.Migrations
                     b.Property<int>("FkPlato")
                         .HasColumnType("int");
 
-                    b.Property<int>("IngredienteIdIngrediente")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PlatoIdPlato")
-                        .HasColumnType("int");
-
                     b.HasKey("IdDetalle");
 
-                    b.HasIndex("IngredienteIdIngrediente");
+                    b.HasIndex("FkIngredientes");
 
-                    b.HasIndex("PlatoIdPlato");
+                    b.HasIndex("FkPlato");
 
                     b.ToTable("DetallesPlatos");
                 });
@@ -194,26 +185,26 @@ namespace RestoStock.Migrations
 
             modelBuilder.Entity("Pedido", b =>
                 {
-                    b.HasOne("RestoStock.Models.Proveedor", "Proveedores")
+                    b.HasOne("RestoStock.Models.Proveedor", "Proveedor")
                         .WithMany("Pedidos")
-                        .HasForeignKey("ProveedoresIdProveedor")
+                        .HasForeignKey("FkProveedor")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Proveedores");
+                    b.Navigation("Proveedor");
                 });
 
             modelBuilder.Entity("RestoStock.Models.DetallesPlato", b =>
                 {
                     b.HasOne("RestoStock.Models.Ingrediente", "Ingrediente")
                         .WithMany("DetallesPlatos")
-                        .HasForeignKey("IngredienteIdIngrediente")
+                        .HasForeignKey("FkIngredientes")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("RestoStock.Models.Plato", "Plato")
                         .WithMany("DetallesPlatos")
-                        .HasForeignKey("PlatoIdPlato")
+                        .HasForeignKey("FkPlato")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
