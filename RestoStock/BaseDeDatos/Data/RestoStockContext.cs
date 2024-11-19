@@ -18,7 +18,22 @@ namespace RestoStock.BaseDeDatos.Data
         public DbSet<User> User { get; set; }
 
 
-        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Pedido>()
+                .HasOne(p => p.Proveedor)
+                .WithMany(b => b.Pedidos)
+                .HasForeignKey(p => p.FkProveedor) 
+                .HasConstraintName("FK_Pedidos_Proveedores_ProveedoresIdProveedor") 
+                .OnDelete(DeleteBehavior.Cascade);
+
+            
+            modelBuilder.Entity<Pedido>()
+                .Property(p => p.FkProveedor)
+                .HasColumnName("ProveedoresIdProveedor"); 
+        }
+
+
 
     }
 

@@ -27,11 +27,12 @@
 
             <div class="form-group">
                 <label asp-for="Pedido.FkProveedor" class="control-label">Proveedor</label>
-                <select asp-for="Pedido.FkProveedor" class="form-control" asp-items="Model.Proveedores">
+                <select asp-for="Pedido.FkProveedor" class="form-control" asp-items="Model.Proveedores" required>
                     <option value="">Seleccione un proveedor</option>
                 </select>
                 <span asp-validation-for="Pedido.FkProveedor" class="text-danger"></span>
             </div>
+
 
             <div class="form-group mt-3">
                 <input type="submit" value="Crear Pedido" class="btn btn-success" />

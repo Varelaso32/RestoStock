@@ -15,7 +15,7 @@
         <tr>
             <th>@Html.DisplayNameFor(model => model.Pedidos[0].FechaPedido)</th>
             <th>@Html.DisplayNameFor(model => model.Pedidos[0].Total)</th>
-            <th>@Html.DisplayNameFor(model => model.Pedidos[0].Proveedores.NombreEmpresa)</th>
+            <th>@Html.DisplayNameFor(model => model.Pedidos[0].Proveedor.NombreEmpresa)</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -25,7 +25,7 @@
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.FechaPedido)</td>
                 <td>@Html.DisplayFor(modelItem => item.Total)</td>
-                <td>@Html.DisplayFor(modelItem => item.Proveedores.NombreEmpresa)</td>
+                <td>@Html.DisplayFor(modelItem => item.Proveedor.NombreEmpresa)</td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.IdPedido" class="btn btn-warning">Editar</a> |
                     <a asp-page="./Delete" asp-route-id="@item.IdPedido" class="btn btn-danger">Eliminar</a>

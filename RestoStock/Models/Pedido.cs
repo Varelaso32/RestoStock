@@ -11,6 +11,6 @@ public class Pedido
 
     public int FkProveedor { get; set; }
 
-    public Proveedor Proveedores { get; set; }
+    public Proveedor Proveedor { get; set; }
 
 }

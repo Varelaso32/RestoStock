@@ -17,10 +17,9 @@ namespace RestoStock.Pages.Pedidos
 
         public async Task OnGetAsync()
         {
-            // Obtener todos los pedidos de la base de datos
             if (_context.Pedidos != null)
             {
-                Pedidos = await _context.Pedidos.Include(p => p.Proveedores).ToListAsync();
+                Pedidos = await _context.Pedidos.Include(p => p.Proveedor).ToListAsync();
             }
         }
     }
