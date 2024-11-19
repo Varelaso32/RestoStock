@@ -21,21 +21,6 @@ namespace RestoStock.BaseDeDatos.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-<<<<<<< HEAD
-            modelBuilder.Entity<Pedido>()
-                .HasOne(p => p.Proveedor)
-                .WithMany(b => b.Pedidos)
-                .HasForeignKey(p => p.FkProveedor)
-                .HasConstraintName("FK_Pedidos_Proveedores_ProveedoresIdProveedor")
-                .OnDelete(DeleteBehavior.Cascade);
-
-
-            modelBuilder.Entity<Pedido>()
-                .Property(p => p.FkProveedor)
-                .HasColumnName("ProveedoresIdProveedor");
-        }
-    } 
-=======
             modelBuilder.Entity<DetallesPlato>()
                 .HasOne(dp => dp.Ingrediente)
                 .WithMany(i => i.DetallesPlatos)
@@ -57,5 +42,4 @@ namespace RestoStock.BaseDeDatos.Data
 
     }
 
->>>>>>> Develop
 }
