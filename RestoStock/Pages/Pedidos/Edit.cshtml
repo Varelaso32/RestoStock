@@ -6,30 +6,24 @@
 <h2>Editar Pedido</h2>
 
 <form method="post">
-    <input type="hidden" asp-for="Pedido.IdPedido" /> <!-- Campo oculto para el Id del Pedido -->
+    <input type="hidden" asp-for="FormPedido.IdPedido" /> <!-- Campo oculto para el Id del Pedido -->
 
     <div class="form-group">
-        <label asp-for="Pedido.FechaPedido" class="control-label"></label>
-        <input asp-for="Pedido.FechaPedido" class="form-control" />
-        <span asp-validation-for="Pedido.FechaPedido" class="text-danger"></span>
+        <label asp-for="FormPedido.FechaPedido" class="control-label"></label>
+        <input asp-for="FormPedido.FechaPedido" class="form-control" />
+        <span asp-validation-for="FormPedido.FechaPedido" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Pedido.Total" class="control-label"></label>
-        <input asp-for="Pedido.Total" class="form-control" type="number" />
-        <span asp-validation-for="Pedido.Total" class="text-danger"></span>
+        <label asp-for="FormPedido.Total" class="control-label"></label>
+        <input asp-for="FormPedido.Total" class="form-control" type="number" />
+        <span asp-validation-for="FormPedido.Total" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Pedido.FkProveedor" class="control-label"></label>
-        <select asp-for="Pedido.FkProveedor" class="form-control" asp-items="Model.Proveedores"></select>
-        <span asp-validation-for="Pedido.FkProveedor" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Pedido.Proveedor.NombreEmpresa" class="control-label"></label>
-        <input asp-for="Pedido.Proveedor.NombreEmpresa" class="form-control" readonly />
-        <span asp-validation-for="Pedido.Proveedor.NombreEmpresa" class="text-danger"></span>
+        <label asp-for="FormPedido.FkProveedor" class="control-label"></label>
+        <select asp-for="FormPedido.FkProveedor" class="form-control" asp-items="Model.ProveedoresList"></select>
+        <span asp-validation-for="FormPedido.FkProveedor" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Guardar</button>

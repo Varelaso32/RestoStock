@@ -17,23 +17,37 @@ namespace RestoStock.Pages.Pedidos
         }
 
         [BindProperty]
-        public Pedido Pedido { get; set; }
+        public FormPedido FormPedido { get; set; } = default!;
 
-        public SelectList Proveedores { get; set; }
+        public SelectList ProveedoresList { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
-            Pedido = await _context.Pedidos
-                .Include(p => p.Proveedor) 
-                .FirstOrDefaultAsync(m => m.IdPedido == id);
-
-            if (Pedido == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            Proveedores = new SelectList(await _context.Proveedores.ToListAsync(), "IdProveedor", "NombreEmpresa");
+            var pedido = await _context.Pedidos
+                .Include(p => p.Proveedor)
+                .FirstOrDefaultAsync(m => m.IdPedido == id);
 
+            if (pedido == null)
+            {
+                return NotFound();
+            }
+
+            // Mapear datos del pedido a FormPedido
+            FormPedido = new FormPedido
+            {
+                IdPedido = pedido.IdPedido,
+                FechaPedido = pedido.FechaPedido,
+                Total = pedido.Total,
+                FkProveedor = pedido.FkProveedor
+            };
+
+            // Cargar lista de proveedores
+            await LoadProveedores();
             return Page();
         }
 
@@ -41,19 +55,32 @@ namespace RestoStock.Pages.Pedidos
         {
             if (!ModelState.IsValid)
             {
-                Proveedores = new SelectList(await _context.Proveedores.ToListAsync(), "IdProveedor", "NombreEmpresa");
+                // Recargar lista de proveedores si el modelo no es válido
+                await LoadProveedores();
                 return Page();
             }
 
-            _context.Attach(Pedido).State = EntityState.Modified;
+            var pedidoToUpdate = await _context.Pedidos.FirstOrDefaultAsync(p => p.IdPedido == FormPedido.IdPedido);
+
+            if (pedidoToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            // Actualizar el pedido con los valores del formulario
+            pedidoToUpdate.FechaPedido = FormPedido.FechaPedido;
+            pedidoToUpdate.Total = FormPedido.Total;
+            pedidoToUpdate.FkProveedor = FormPedido.FkProveedor;
 
             try
             {
                 await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Pedido editado exitosamente.";
+                return RedirectToPage("./Index");
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PedidoExists(Pedido.IdPedido))
+                if (!PedidoExists(FormPedido.IdPedido))
                 {
                     return NotFound();
                 }
@@ -62,13 +89,24 @@ namespace RestoStock.Pages.Pedidos
                     throw;
                 }
             }
-
-            return RedirectToPage("./Index");
         }
 
         private bool PedidoExists(int id)
         {
             return _context.Pedidos.Any(e => e.IdPedido == id);
+        }
+
+        private async Task LoadProveedores()
+        {
+            // Cargar lista de proveedores desde la base de datos
+            var proveedores = await _context.Proveedores.ToListAsync();
+            ProveedoresList = new SelectList(proveedores, "IdProveedor", "NombreEmpresa");
+
+            // Validar si no hay proveedores disponibles
+            if (!proveedores.Any())
+            {
+                ModelState.AddModelError("", "Debe haber al menos un proveedor disponible.");
+            }
         }
     }
 }

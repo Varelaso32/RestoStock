@@ -11,8 +11,8 @@ using RestoStock.BaseDeDatos.Data;
 namespace RestoStock.Migrations
 {
     [DbContext(typeof(RestoStockContext))]
-    [Migration("20241119034824_InitialCreateVarela")]
-    partial class InitialCreateVarela
+    [Migration("20241119042621_InitialCreateDeLaCruz")]
+    partial class InitialCreateDeLaCruz
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
