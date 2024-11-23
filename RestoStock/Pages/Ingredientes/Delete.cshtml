@@ -1,0 +1,67 @@
+﻿@page
+@model RestoStock.Pages.Ingredientes.DeleteModel
+@{
+    ViewData["Title"] = "Eliminar Ingrediente";
+}
+
+<h1 class="text-center text-danger display-5 fw-bold">Eliminar Ingrediente</h1>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="alert alert-light mt-4 border border-secondary">
+    <h4 class="alert-heading">Detalle del Ingrediente a Eliminar</h4>
+    <div class="mb-2">
+        <strong>Nombre:</strong> @Html.DisplayFor(model => model.Ingrediente.Nombre)
+    </div>
+    <div class="mb-2">
+        <strong>Cantidad Disponible:</strong> @Html.DisplayFor(model => model.Ingrediente.CantidadDisponible)
+    </div>
+    <div class="mb-2">
+        <strong>Unidad de Medida:</strong> @Html.DisplayFor(model => model.Ingrediente.UnidadMedida)
+    </div>
+    <div class="mb-2">
+        <strong>Precio Unitario:</strong> @Html.DisplayFor(model => model.Ingrediente.PrecioUnitario)
+    </div>
+</div>
+
+<!-- Botón de confirmación -->
+<button class="btn btn-danger btn-lg shadow" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+    <i class="bi bi-trash3 me-2"></i> Eliminar
+</button>
+
+<a asp-page="./Index" class="btn btn-secondary btn-lg shadow">
+    <i class="bi bi-arrow-left me-2"></i> Volver a la Lista
+</a>
+
+<!-- Modal de confirmación -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4 class="alert-heading">¿Estás seguro de que quieres eliminar este ingrediente?</h4>
+                <p>Esta acción no se puede deshacer. Asegúrate de que deseas eliminar permanentemente este ingrediente.</p>
+            </div>
+            <div class="modal-footer">
+                <form method="post" class="d-inline">
+                    <input type="hidden" asp-for="Ingrediente.IdIngrediente" />
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

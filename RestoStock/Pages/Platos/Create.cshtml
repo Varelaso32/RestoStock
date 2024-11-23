@@ -1,0 +1,64 @@
+﻿@page
+@model RestoStock.Pages.Platos.CreateModel
+@{
+    ViewData["Title"] = "Crear Plato";
+}
+
+<h1 class="text-center mb-4 text-danger">Crear Plato</h1>
+
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-sm p-4">
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @TempData["ErrorMessage"]
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <!-- Nombre -->
+                <div class="form-group mb-3">
+                    <label asp-for="Plato.Nombre" class="form-label fw-bold">Nombre</label>
+                    <input asp-for="Plato.Nombre" class="form-control" />
+                    <span asp-validation-for="Plato.Nombre" class="text-danger"></span>
+                </div>
+
+                <!-- Precio de Venta -->
+                <div class="form-group mb-3">
+                    <label asp-for="Plato.PrecioVenta" class="form-label fw-bold">Precio de Venta</label>
+                    <input asp-for="Plato.PrecioVenta" class="form-control" />
+                    <span asp-validation-for="Plato.PrecioVenta" class="text-danger"></span>
+                </div>
+
+                <!-- Descripción -->
+                <div class="form-group mb-3">
+                    <label asp-for="Plato.Descripcion" class="form-label fw-bold">Descripción</label>
+                    <input asp-for="Plato.Descripcion" class="form-control" />
+                    <span asp-validation-for="Plato.Descripcion" class="text-danger"></span>
+                </div>
+
+                <!-- Botones -->
+                <div class="form-group mt-4 text-center">
+                    <button type="submit" class="btn btn-danger me-2">
+                        <i class="bi bi-plus-circle"></i> Crear
+                    </button>
+                    <a asp-page="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left-circle"></i> Volver
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/site.js"></script>
+}

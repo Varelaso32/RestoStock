@@ -1,0 +1,64 @@
+﻿@page
+@model RestoStock.Pages.Platos.DeleteModel
+@{
+    ViewData["Title"] = "Eliminar Plato";
+}
+
+<h1 class="text-center text-danger display-5 fw-bold">Eliminar Plato</h1>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="alert alert-light mt-4 border border-secondary">
+    <h4 class="alert-heading">Plato a Eliminar</h4>
+    <div class="mb-2">
+        <strong>Nombre del Plato:</strong> @Html.DisplayFor(model => model.Plato.Nombre)
+    </div>
+    <div class="mb-2">
+        <strong>Precio de Venta:</strong> @Html.DisplayFor(model => model.Plato.PrecioVenta)
+    </div>
+    <div class="mb-2">
+        <strong>Descripción:</strong> @Html.DisplayFor(model => model.Plato.Descripcion)
+    </div>
+</div>
+
+<!-- Botón de confirmación -->
+<button class="btn btn-danger btn-lg shadow" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+    <i class="bi bi-trash3 me-2"></i> Eliminar
+</button>
+
+<a asp-page="./Index" class="btn btn-secondary btn-lg shadow">
+    <i class="bi bi-arrow-left me-2"></i> Volver a la Lista
+</a>
+
+<!-- Modal de confirmación -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4 class="alert-heading">¿Estás seguro de que quieres eliminar este plato?</h4>
+                <p>Esta acción no se puede deshacer. Asegúrate de que deseas eliminar permanentemente este plato.</p>
+            </div>
+            <div class="modal-footer">
+                <form method="post" class="d-inline">
+                    <input type="hidden" asp-for="Plato.IdPlato" />
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

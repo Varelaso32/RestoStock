@@ -1,0 +1,55 @@
+﻿@page
+@model RestoStock.Pages.Provedores.CreateModel
+@{
+    ViewData["Title"] = "Crear Pedido";
+    var proveedores = ViewData["Proveedores"] as List<RestoStock.Models.Proveedor>;
+
+    if (proveedores == null || proveedores.Count == 0)
+    {
+        <text>No hay proveedores disponibles.</text>
+    }
+}
+
+<h1>Crear Provedores</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Proveedor.NombreEmpresa" class="control-label">Nombre Empresa</label>
+        <input asp-for="Proveedor.NombreEmpresa" class="form-control" />
+        <span asp-validation-for="Proveedor.NombreEmpresa" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Proveedor.Contacto" class="control-label">Contacto</label>
+        <input asp-for="Proveedor.Contacto" class="form-control" />
+        <span asp-validation-for="Proveedor.Contacto" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Proveedor.Telefono" class="control-label">Telefono</label>
+        <input asp-for="Proveedor.Telefono" class="form-control" />
+        <span asp-validation-for="Proveedor.Telefono" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Proveedor.Email" class="control-label">Email</label>
+        <input asp-for="Proveedor.Email" class="form-control" />
+        <span asp-validation-for="Proveedor.Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Proveedor.Direccion" class="control-label">Direccion</label>
+        <input asp-for="Proveedor.Direccion" class="form-control" />
+        <span asp-validation-for="Proveedor.Direccion" class="text-danger"></span>
+    </div>
+    
+
+    <div class="form-group">
+        <input type="submit" value="Crear Proveedor" class="btn btn-success" />
+        <a asp-page="Index" class="btn btn-primary">Volver a la Lista</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

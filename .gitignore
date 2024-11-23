@@ -536,3 +536,11 @@ FodyWeavers.xsd
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio,aspnetcore,dotnetcore
+RestoStock/obj/project.assets.json
+RestoStock/obj/project.nuget.cache
+RestoStock/obj/RestoStock.csproj.nuget.dgspec.json
+RestoStock/obj/RestoStock.csproj.nuget.g.props
+RestoStock/obj/Debug/net8.0/RestoStock.AssemblyInfo.cs
+RestoStock/obj/Debug/net8.0/RestoStock.AssemblyInfoInputs.cache
+RestoStock/obj/Debug/net8.0/RestoStock.assets.cache
+RestoStock/obj/Debug/net8.0/RestoStock.GeneratedMSBuildEditorConfig.editorconfig

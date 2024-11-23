@@ -1,0 +1,66 @@
+﻿@page
+@model RestoStock.Pages.Platos.IndexModel
+@{
+    ViewData["Title"] = "Index de Platos";
+}
+
+<h1 class="text-center mb-4 text-danger">Detalles de Platos</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle me-2"></i> @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<p>
+    <a asp-page="Create" class="btn btn-danger">
+        <i class="bi bi-plus-circle me-1"></i> Agregar Nuevo
+    </a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Platos[0].Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Platos[0].PrecioVenta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Platos[0].Descripcion)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Platos)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrecioVenta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.IdPlato" class="btn btn-warning">Editar</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.IdPlato" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Styles {
+    <link rel="stylesheet" href="/css/site.css" />
+}
+
+@section Scripts {
+    <script src="~/js/site.js"></script>
+}

@@ -1,0 +1,63 @@
+﻿@page
+@model RestoStock.Pages.Pedidos.IndexModel
+@{
+    ViewData["Title"] = "Pedidos";
+}
+
+<h1 class="text-center mb-4 text-danger">Pedidos</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle me-2"></i> @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<p class="text-end">
+    <a asp-page="/Pedidos/Create" class="btn btn-danger">
+        <i class="bi bi-plus-circle me-1"></i> Agregar
+    </a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-hover align-middle table-bordered">
+        <thead class="table-danger">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Pedidos[0].FechaPedido)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Pedidos[0].Total)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model.Pedidos[0].Proveedor.NombreEmpresa)</th>
+                <th scope="col" class="text-center">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Pedidos.Count; i++)
+            {
+                var item = Model.Pedidos[i];
+                <tr>
+                    <th scope="row" class="fw-bold text-danger text-center">@((i + 1))</th>
+                    <td>@Html.DisplayFor(modelItem => item.FechaPedido)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Total)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Proveedor.NombreEmpresa)</td>
+                    <td class="text-center">
+                        <a asp-page="./Edit" asp-route-id="@item.IdPedido" class="btn btn-outline-danger btn-sm me-2">
+                            <i class="bi bi-pencil me-1"></i> Editar
+                        </a>
+                        <a asp-page="./Delete" asp-route-id="@item.IdPedido" class="btn btn-outline-dark btn-sm">
+                            <i class="bi bi-trash me-1"></i> Eliminar
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="/css/site.css" />
+}
+
+@section Scripts {
+    <script src="~/js/site.js"></script>
+}

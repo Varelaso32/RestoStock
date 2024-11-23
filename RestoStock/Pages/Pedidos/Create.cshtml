@@ -1,0 +1,66 @@
+﻿@page
+@model RestoStock.Pages.Pedidos.CreateModel
+@{
+    ViewData["Title"] = "Crear Pedido";
+}
+
+<h1 class="text-center mb-4 text-danger">Crear Pedido</h1>
+
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-sm p-4">
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @TempData["ErrorMessage"]
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <!-- Fecha del Pedido -->
+                <div class="form-group mb-3">
+                    <label asp-for="Pedido.FechaPedido" class="form-label fw-bold">Fecha del Pedido</label>
+                    <input asp-for="Pedido.FechaPedido" class="form-control" type="date" placeholder="Seleccione la fecha del pedido" />
+                    <span asp-validation-for="Pedido.FechaPedido" class="text-danger"></span>
+                </div>
+
+                <!-- Total -->
+                <div class="form-group mb-3">
+                    <label asp-for="Pedido.Total" class="form-label fw-bold">Total</label>
+                    <input asp-for="Pedido.Total" class="form-control" type="number" step="0.01" placeholder="Ingrese el total del pedido" />
+                    <span asp-validation-for="Pedido.Total" class="text-danger"></span>
+                </div>
+
+                <!-- Proveedor -->
+                <div class="form-group mb-3">
+                    <label asp-for="Pedido.FkProveedor" class="form-label fw-bold">Proveedor</label>
+                    <select asp-for="Pedido.FkProveedor" asp-items="Model.Proveedores" class="form-select" required>
+                        <option value="">-- Seleccione un proveedor --</option>
+                    </select>
+                    <span asp-validation-for="Pedido.FkProveedor" class="text-danger"></span>
+                </div>
+
+                <!-- Botones -->
+                <div class="form-group mt-4 text-center">
+                    <button type="submit" class="btn btn-danger me-2">
+                        <i class="bi bi-plus-circle"></i> Crear Pedido
+                    </button>
+                    <a asp-page="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left-circle"></i> Volver
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/site.js"></script>
+}

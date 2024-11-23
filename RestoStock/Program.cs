@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using RestoStock.BaseDeDatos.Data;
+
 namespace RestoStock
 {
     public class Program
@@ -8,6 +11,20 @@ namespace RestoStock
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+
+            builder.Services.AddDbContext<RestoStockContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Supermarket"))
+
+            );
+
+
+            //Manejo de las Cookies
+            builder.Services.AddAuthentication().AddCookie("MyCookieAuth", options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.Cookie.Name = "MyCookieAuth";
+                options.LoginPath = "/Account/Login";
+            });
 
             var app = builder.Build();
 

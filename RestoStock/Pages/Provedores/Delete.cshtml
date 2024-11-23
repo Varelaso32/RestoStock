@@ -1,0 +1,54 @@
+﻿@page
+@model RestoStock.Pages.Proveedores.DeleteModel
+@{
+    ViewData["Title"] = "Eliminar Proveedor";
+}
+<h1>Eliminar Proveedor</h1>
+
+<h3>¿Está seguro de que desea eliminar este proveedor?</h3>
+<div>
+    <h4>Proveedor</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Proveedor.NombreEmpresa)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Proveedor.NombreEmpresa)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Proveedor.Contacto)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Proveedor.Contacto)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Proveedor.Telefono)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Proveedor.Telefono)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Proveedor.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Proveedor.Email)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Proveedor.Direccion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Proveedor.Direccion)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Proveedor.IdProveedor" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        <a asp-page="./Index" class="btn btn-primary">Volver a la lista</a>
+    </form>
+</div>
