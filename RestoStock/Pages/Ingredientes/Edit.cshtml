@@ -1,41 +1,74 @@
 ﻿@page
 @model RestoStock.Pages.Ingredientes.EditModel
 @{
-	ViewData["Title"] = "Editar Ingrediente";
+    ViewData["Title"] = "Editar Ingrediente";
 }
-<h2>Editar Ingrediente</h2>
 
-<form method="post">
-    <input type="hidden" asp-for="IngredienteForm.IdIngrediente" /> <!-- Campo oculto para el Id -->
+<h1 class="text-center mb-4 text-danger">Editar Ingrediente</h1>
 
-    <div class="form-group">
-        <label asp-for="IngredienteForm.Nombre" class="control-label"></label>
-        <input asp-for="IngredienteForm.Nombre" class="form-control" />
-        <span asp-validation-for="IngredienteForm.Nombre" class="text-danger"></span>
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-sm p-4">
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @TempData["ErrorMessage"]
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <!-- ID del ingrediente -->
+                <input type="hidden" asp-for="IngredienteForm.IdIngrediente" />
+
+                <!-- Nombre -->
+                <div class="form-group mb-3">
+                    <label asp-for="IngredienteForm.Nombre" class="form-label fw-bold">Nombre</label>
+                    <input asp-for="IngredienteForm.Nombre" class="form-control" placeholder="Ingrese el nombre del ingrediente" />
+                    <span asp-validation-for="IngredienteForm.Nombre" class="text-danger"></span>
+                </div>
+
+                <!-- Cantidad Disponible -->
+                <div class="form-group mb-3">
+                    <label asp-for="IngredienteForm.CantidadDisponible" class="form-label fw-bold">Cantidad Disponible</label>
+                    <input asp-for="IngredienteForm.CantidadDisponible" class="form-control" type="number" placeholder="Ingrese la cantidad disponible" />
+                    <span asp-validation-for="IngredienteForm.CantidadDisponible" class="text-danger"></span>
+                </div>
+
+                <!-- Unidad de Medida -->
+                <div class="form-group mb-3">
+                    <label asp-for="IngredienteForm.UnidadMedida" class="form-label fw-bold">Unidad de Medida</label>
+                    <input asp-for="IngredienteForm.UnidadMedida" class="form-control" placeholder="Ingrese la unidad de medida" />
+                    <span asp-validation-for="IngredienteForm.UnidadMedida" class="text-danger"></span>
+                </div>
+
+                <!-- Precio Unitario -->
+                <div class="form-group mb-3">
+                    <label asp-for="IngredienteForm.PrecioUnitario" class="form-label fw-bold">Precio Unitario</label>
+                    <input asp-for="IngredienteForm.PrecioUnitario" class="form-control" type="number" step="0.01" placeholder="Ingrese el precio unitario" />
+                    <span asp-validation-for="IngredienteForm.PrecioUnitario" class="text-danger"></span>
+                </div>
+
+                <!-- Botones -->
+                <div class="form-group mt-4 text-center">
+                    <button type="submit" class="btn btn-danger me-2">
+                        <i class="bi bi-save"></i> Guardar
+                    </button>
+                    <a asp-page="./Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left-circle"></i> Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label asp-for="IngredienteForm.CantidadDisponible" class="control-label"></label>
-        <input asp-for="IngredienteForm.CantidadDisponible" class="form-control" />
-        <span asp-validation-for="IngredienteForm.CantidadDisponible" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="IngredienteForm.UnidadMedida" class="control-label"></label>
-        <input asp-for="IngredienteForm.UnidadMedida" class="form-control" />
-        <span asp-validation-for="IngredienteForm.UnidadMedida" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="IngredienteForm.PrecioUnitario" class="control-label"></label>
-        <input asp-for="IngredienteForm.PrecioUnitario" class="form-control" step="0.01" />
-        <span asp-validation-for="IngredienteForm.PrecioUnitario" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Guardar</button>
-    <a asp-page="./Index" class="btn btn-secondary">Cancelar</a>
-</form>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/site.js"></script>
 }

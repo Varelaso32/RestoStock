@@ -15,33 +15,44 @@ namespace RestoStock.Pages.Ingredientes
             _context = context;
         }
 
+        [BindProperty]
+        public FormIngrediente Ingrediente { get; set; } = default!;
+
         public IActionResult OnGet()
         {
             return Page();
         }
 
-        [BindProperty]
-        public FormIngrediente Ingrediente { get; set; } = default!;
-
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid || _context.Ingredientes == null || Ingrediente == null)
+            if (!ModelState.IsValid || Ingrediente == null)
             {
+                TempData["ErrorMessage"] = "Por favor, corrija los errores en el formulario antes de continuar.";
                 return Page();
             }
 
-            var ingrediente = new Ingrediente
+            try
             {
-                Nombre = Ingrediente.Nombre,
-                CantidadDisponible = Ingrediente.CantidadDisponible,
-                UnidadMedida = Ingrediente.UnidadMedida,
-                PrecioUnitario = Ingrediente.PrecioUnitario,
-            };
+                var ingrediente = new Ingrediente
+                {
+                    Nombre = Ingrediente.Nombre,
+                    CantidadDisponible = Ingrediente.CantidadDisponible,
+                    UnidadMedida = Ingrediente.UnidadMedida,
+                    PrecioUnitario = Ingrediente.PrecioUnitario,
+                };
 
-            _context.Ingredientes.Add(ingrediente);
-            await _context.SaveChangesAsync();
+                _context.Ingredientes.Add(ingrediente);
+                await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+                TempData["SuccessMessage"] = "Ingrediente creado exitosamente.";
+                return RedirectToPage("./Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Ocurrió un error al guardar el ingrediente. Inténtelo de nuevo.";
+                Console.WriteLine($"Error: {ex.Message}");
+                return Page();
+            }
         }
     }
 }

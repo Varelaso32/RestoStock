@@ -79,3 +79,39 @@ footer {
 .form-check-label {
     color: #000; 
 }
+
+.custom-alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    width: auto;
+    min-width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.table-danger {
+    background-color: #f8d7da;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-outline-dark:hover {
+    background-color: #343a40;
+    color: white;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table-bordered {
+    border: 1px solid #dc3545;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+}

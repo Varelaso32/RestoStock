@@ -1,52 +1,61 @@
 ﻿@page
 @model RestoStock.Pages.Ingredientes.CreateModel
 @{
-    ViewData["Title"] = "Create Ingrediente";
+    ViewData["Title"] = "Crear Ingrediente";
 }
 
-<h1>Create Ingrediente</h1>
+<h1 class="text-center mb-4 text-danger">Crear Ingrediente</h1>
 
-<h4>Ingredientes</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-sm p-4">
 
-            <div class="form-group">
-                <label asp-for="Ingrediente.Nombre" class="control-label"></label>
-                <input asp-for="Ingrediente.Nombre" class="form-control" />
-                <span asp-validation-for="Ingrediente.Nombre" class="text-danger"></span>
-            </div>
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-            <div class="form-group">
-                <label asp-for="Ingrediente.CantidadDisponible" class="control-label"></label>
-                <input asp-for="Ingrediente.CantidadDisponible" class="form-control" />
-                <span asp-validation-for="Ingrediente.CantidadDisponible" class="text-danger"></span>
-            </div>
+                <!-- Nombre -->
+                <div class="form-group mb-3">
+                    <label asp-for="Ingrediente.Nombre" class="form-label fw-bold">Nombre</label>
+                    <input asp-for="Ingrediente.Nombre" class="form-control" placeholder="Ingrese el nombre del ingrediente" />
+                    <span asp-validation-for="Ingrediente.Nombre" class="text-danger"></span>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="Ingrediente.UnidadMedida" class="control-label"></label>
-                <input asp-for="Ingrediente.UnidadMedida" class="form-control" />
-                <span asp-validation-for="Ingrediente.UnidadMedida" class="text-danger"></span>
-            </div>
+                <!-- Cantidad Disponible -->
+                <div class="form-group mb-3">
+                    <label asp-for="Ingrediente.CantidadDisponible" class="form-label fw-bold">Cantidad Disponible</label>
+                    <input asp-for="Ingrediente.CantidadDisponible" class="form-control" type="number" placeholder="Ingrese la cantidad disponible" />
+                    <span asp-validation-for="Ingrediente.CantidadDisponible" class="text-danger"></span>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="Ingrediente.PrecioUnitario" class="control-label"></label>
-                <input asp-for="Ingrediente.PrecioUnitario" class="form-control" />
-                <span asp-validation-for="Ingrediente.PrecioUnitario" class="text-danger"></span>
-            </div>
+                <!-- Unidad de Medida -->
+                <div class="form-group mb-3">
+                    <label asp-for="Ingrediente.UnidadMedida" class="form-label fw-bold">Unidad de Medida</label>
+                    <input asp-for="Ingrediente.UnidadMedida" class="form-control" placeholder="Ingrese la unidad de medida" />
+                    <span asp-validation-for="Ingrediente.UnidadMedida" class="text-danger"></span>
+                </div>
 
-            <div class="form-group mt-3">
-                <input type="submit" value="Create" class="btn btn-success" />
-                <a asp-page="Index" class="btn btn-primary">Back to List</a>
-            </div>
-        </form>
+                <!-- Precio Unitario -->
+                <div class="form-group mb-3">
+                    <label asp-for="Ingrediente.PrecioUnitario" class="form-label fw-bold">Precio Unitario</label>
+                    <input asp-for="Ingrediente.PrecioUnitario" class="form-control" type="number" step="0.01" placeholder="Ingrese el precio unitario" />
+                    <span asp-validation-for="Ingrediente.PrecioUnitario" class="text-danger"></span>
+                </div>
+
+                <!-- Botones -->
+                <div class="form-group mt-4 text-center">
+                    <button type="submit" class="btn btn-danger me-2">
+                        <i class="bi bi-plus-circle"></i> Guardar
+                    </button>
+                    <a asp-page="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left-circle"></i> Volver
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/site.js"></script>
 }

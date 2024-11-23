@@ -4,33 +4,64 @@
     ViewData["Title"] = "Editar Plato";
 }
 
-<h2>Editar Plato</h2>
+<h1 class="text-center mb-4 text-danger">Editar Plato</h1>
 
-<form method="post">
-    <input type="hidden" asp-for="PlatoForm.IdPlato" /> <!-- Campo oculto para el Id del Plato -->
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-sm p-4">
 
-    <div class="form-group">
-        <label asp-for="PlatoForm.Nombre" class="control-label"></label>
-        <input asp-for="PlatoForm.Nombre" class="form-control" />
-        <span asp-validation-for="PlatoForm.Nombre" class="text-danger"></span>
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @TempData["ErrorMessage"]
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <!-- ID Plato -->
+                <input type="hidden" asp-for="PlatoForm.IdPlato" />
+
+                <!-- Nombre -->
+                <div class="form-group mb-3">
+                    <label asp-for="PlatoForm.Nombre" class="form-label fw-bold">Nombre</label>
+                    <input asp-for="PlatoForm.Nombre" class="form-control" />
+                    <span asp-validation-for="PlatoForm.Nombre" class="text-danger"></span>
+                </div>
+
+                <!-- Precio Venta -->
+                <div class="form-group mb-3">
+                    <label asp-for="PlatoForm.PrecioVenta" class="form-label fw-bold">Precio de Venta</label>
+                    <input asp-for="PlatoForm.PrecioVenta" class="form-control" step="0.01" />
+                    <span asp-validation-for="PlatoForm.PrecioVenta" class="text-danger"></span>
+                </div>
+
+                <!-- Descripción -->
+                <div class="form-group mb-3">
+                    <label asp-for="PlatoForm.Descripcion" class="form-label fw-bold">Descripción</label>
+                    <input asp-for="PlatoForm.Descripcion" class="form-control" />
+                    <span asp-validation-for="PlatoForm.Descripcion" class="text-danger"></span>
+                </div>
+
+                <!-- Botones -->
+                <div class="form-group mt-4 text-center">
+                    <button type="submit" class="btn btn-danger me-2">
+                        <i class="bi bi-save"></i> Guardar
+                    </button>
+                    <a asp-page="./Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left-circle"></i> Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label asp-for="PlatoForm.PrecioVenta" class="control-label"></label>
-        <input asp-for="PlatoForm.PrecioVenta" class="form-control" step="0.01" />
-        <span asp-validation-for="PlatoForm.PrecioVenta" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="PlatoForm.Descripcion" class="control-label"></label>
-        <input asp-for="PlatoForm.Descripcion" class="form-control" />
-        <span asp-validation-for="PlatoForm.Descripcion" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Guardar</button>
-    <a asp-page="./Index" class="btn btn-secondary">Cancelar</a>
-</form>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/site.js"></script>
 }
