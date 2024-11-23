@@ -3,33 +3,65 @@
 @{
     ViewData["Title"] = "Editar Pedido";
 }
-<h2>Editar Pedido</h2>
 
-<form method="post">
-    <input type="hidden" asp-for="FormPedido.IdPedido" /> <!-- Campo oculto para el Id del Pedido -->
+<h1 class="text-center mb-4 text-danger">Editar Pedido</h1>
 
-    <div class="form-group">
-        <label asp-for="FormPedido.FechaPedido" class="control-label"></label>
-        <input asp-for="FormPedido.FechaPedido" class="form-control" />
-        <span asp-validation-for="FormPedido.FechaPedido" class="text-danger"></span>
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-sm p-4">
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @TempData["ErrorMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <!-- Campo oculto para el ID del pedido -->
+                <input type="hidden" asp-for="FormPedido.IdPedido" />
+
+                <!-- Fecha del Pedido -->
+                <div class="form-group mb-3">
+                    <label asp-for="FormPedido.FechaPedido" class="form-label fw-bold">Fecha del Pedido</label>
+                    <input asp-for="FormPedido.FechaPedido" class="form-control" type="date" />
+                    <span asp-validation-for="FormPedido.FechaPedido" class="text-danger"></span>
+                </div>
+
+                <!-- Total -->
+                <div class="form-group mb-3">
+                    <label asp-for="FormPedido.Total" class="form-label fw-bold">Total</label>
+                    <input asp-for="FormPedido.Total" class="form-control" type="number" placeholder="Ingrese el total del pedido" />
+                    <span asp-validation-for="FormPedido.Total" class="text-danger"></span>
+                </div>
+
+                <!-- Proveedor -->
+                <div class="form-group mb-3">
+                    <label asp-for="FormPedido.FkProveedor" class="form-label fw-bold">Proveedor</label>
+                    <select asp-for="FormPedido.FkProveedor" asp-items="Model.ProveedoresList" class="form-select">
+                        <option value="">-- Seleccione un proveedor --</option>
+                    </select>
+                    <span asp-validation-for="FormPedido.FkProveedor" class="text-danger"></span>
+                </div>
+
+                <!-- Botones -->
+                <div class="form-group mt-4 text-center">
+                    <button type="submit" class="btn btn-danger me-2">
+                        <i class="bi bi-save"></i> Guardar
+                    </button>
+                    <a asp-page="Index" class="btn btn-outline-dark">
+                        <i class="bi bi-arrow-left-circle"></i> Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label asp-for="FormPedido.Total" class="control-label"></label>
-        <input asp-for="FormPedido.Total" class="form-control" type="number" />
-        <span asp-validation-for="FormPedido.Total" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="FormPedido.FkProveedor" class="control-label"></label>
-        <select asp-for="FormPedido.FkProveedor" class="form-control" asp-items="Model.ProveedoresList"></select>
-        <span asp-validation-for="FormPedido.FkProveedor" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Guardar</button>
-    <a asp-page="./Index" class="btn btn-secondary">Cancelar</a>
-</form>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/site.js"></script>
 }

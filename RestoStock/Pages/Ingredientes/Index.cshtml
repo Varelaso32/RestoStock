@@ -1,53 +1,71 @@
 ﻿@page
 @model RestoStock.Pages.Ingredientes.IndexModel
 @{
-	ViewData["Title"] = "Index Ingredientes";
+    ViewData["Title"] = "Index Ingredientes";
 }
-<h1>Index Ingredientes</h1>
+<div class="container my-5">
+    <!-- Título central -->
+    <h1 class="text-center mb-4 text-danger" style="font-weight: bold;">Ingredientes</h1>
 
-<p>
-    <a asp-page="Create" class="btn btn-success">Create New</a>
-</p>
+    <!-- Mensaje de éxito -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="bi bi-check-circle me-2"></i> @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Ingredientes[0].Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ingredientes[0].CantidadDisponible)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ingredientes[0].UnidadMedida)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ingredientes[0].PrecioUnitario)
-            </th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Ingredientes)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CantidadDisponible)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UnidadMedida)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PrecioUnitario)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.IdIngrediente" class="btn btn-warning">Edit</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.IdIngrediente" class="btn btn-danger">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <!-- Botón para agregar nuevo ingrediente -->
+    <p class="text-end">
+        <a asp-page="Create" class="btn btn-danger" style="font-weight: bold;">
+            <i class="bi bi-plus-circle me-1"></i> Agregar Nuevo Ingrediente
+        </a>
+    </p>
+
+    <!-- Tabla estilizada -->
+    <div class="table-responsive">
+        <table class="table table-hover align-middle table-bordered">
+            <!-- Encabezado de tabla -->
+            <thead class="table-danger text-center">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.Ingredientes[0].Nombre)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.Ingredientes[0].CantidadDisponible)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.Ingredientes[0].UnidadMedida)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.Ingredientes[0].PrecioUnitario)</th>
+                    <th scope="col" class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <!-- Cuerpo de tabla -->
+            <tbody>
+                @for (int i = 0; i < Model.Ingredientes.Count; i++)
+                {
+                    var item = Model.Ingredientes[i];
+                    <tr>
+                        <th scope="row" class="fw-bold text-danger text-center">@((i + 1))</th>
+                        <td class="align-middle">@Html.DisplayFor(modelItem => item.Nombre)</td>
+                        <td class="align-middle text-center">@Html.DisplayFor(modelItem => item.CantidadDisponible)</td>
+                        <td class="align-middle text-center">@Html.DisplayFor(modelItem => item.UnidadMedida)</td>
+                        <td class="align-middle text-end">$@Html.DisplayFor(modelItem => item.PrecioUnitario)</td>
+                        <td class="text-center">
+                            <a asp-page="./Edit" asp-route-id="@item.IdIngrediente" class="btn btn-outline-danger btn-sm me-2">
+                                <i class="bi bi-pencil me-1"></i> Editar
+                            </a>
+                            <a asp-page="./Delete" asp-route-id="@item.IdIngrediente" class="btn btn-outline-dark btn-sm">
+                                <i class="bi bi-trash me-1"></i> Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="/css/site.css" />
+}
+@section Scripts {
+    <script src="~/js/site.js"></script>
+}
